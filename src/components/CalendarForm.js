@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import { formFields } from "../data/formFields";
+import { validateForm } from "../helpers/formValidation";
+import { saveMeetingAction } from "../actions/calendar";
+import { useDispatch } from "react-redux";
+import { postFetch } from "../providers/CalendarProvider";
+import Label from "./label/Label";
+import TextInput from "./textinput/TextInput";
+import FieldContainer from "./fieldContainer/FieldContainer";
+import Button from "./Button/Button";
+import Error from "./Error/Error";
 
 const CalendarForm = () => {
 	const initialState = {
@@ -12,174 +22,76 @@ const CalendarForm = () => {
 
 	const [formState, setFormState] = useState(initialState);
 
+	const dispatch = useDispatch();
+
+	const sendMeetingToApi = meetingData => {
+		postFetch(meetingData)
+			.then(meetingData => {
+				dispatch(saveMeetingAction(meetingData));
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		const errors = validateForm();
-		setFormState({
-			errors,
-		});
-
+		const errors = validateForm(formState, formFields);
+		setFormState({ ...formState, errors });
+		console.log(errors);
 		if (errors.length === 0) {
-			saveMeeting();
+			sendMeetingToApi(formState);
 			clearFormFields();
 		}
 	};
 
-	const validateForm = () => {
-		const errors = [];
-
-		if (!isDateCorrect()) {
-			errors.push("Popraw wprowadzoną datę");
-		}
-
-		if (!isTimeCorrect()) {
-			errors.push("Popraw wprowadzoną godiznę");
-		}
-
-		if (!isFirstNameCorrect()) {
-			errors.push("Wprowadź imię");
-		}
-
-		if (!isLastNameCorrect()) {
-			errors.push("Wprowadż nazwisko");
-		}
-
-		if (!isEmailCorrect()) {
-			errors.push("Wprowadź poprawny adres email");
-		}
-
-		return errors;
-	};
-
-	const isDateCorrect = () => {
-		const pattern = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
-
-		return pattern.test(formState.date);
-	};
-
-	const isTimeCorrect = () => {
-		const pattern = /^[0-9]{2}:[0-9]{2}$/;
-
-		return pattern.test(formState.time);
-	};
-
-	const isFirstNameCorrect = () => {
-		return formState.firstName.length > 0;
-	};
-
-	const isLastNameCorrect = () => {
-		return formState.lastName.length > 0;
-	};
-
-	const isEmailCorrect = () => {
-		const pattern = /^[0-9a-zA-Z_.-]+@[0-9a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
-
-		return pattern.test(formState.email);
-	};
-
 	const handleFieldChange = e => {
-		if (isFieldNameCorrect(e.target.name)) {
-			setFormState({
-				[e.target.name]: e.target.value,
-			});
-		}
-	};
-
-	const saveMeeting = () => {
-		const { saveMeeting } = props;
-
-		if (typeof saveMeeting === "function") {
-			saveMeeting(getFieldsData());
+		const { name, value } = e.target;
+		if (isFieldNameCorrect(name)) {
+			setFormState({ ...formState, [name]: value });
 		}
 	};
 
 	const clearFormFields = () => {
-		const fieldsData = getFieldsData();
-		for (const prop in fieldsData) {
-			fieldsData[prop] = "";
-		}
-
-		setFormState(fieldsData);
+		setFormState(initialState);
 	};
 
 	const getFieldsData = () => {
 		const fieldsData = Object.assign({}, formState);
 		delete fieldsData["errors"];
-
 		return fieldsData;
 	};
 
 	const isFieldNameCorrect = name => {
 		const fieldsData = getFieldsData();
-
 		return typeof fieldsData[name] !== "undefined";
 	};
 
-	const renderErrors = () => {
-		return formState.errors.map((err, index) => <li key={index}>{err}</li>);
-	};
+	const fields = formFields.map(field => {
+		return (
+			<>
+				<FieldContainer key={field.name}>
+					<Label label={field.label}>{field.label}</Label>
+
+					<TextInput
+						type={field.type}
+						name={field.name}
+						placeholder={field.placeholder}
+						value={formState[field.name]}
+						onChange={handleFieldChange}></TextInput>
+				</FieldContainer>
+				<Error
+					errors={formState.errors.filter(err => err.name === field.name)}
+				/>
+			</>
+		);
+	});
 
 	return (
 		<form action='' onSubmit={handleSubmit}>
-			<ul>{renderErrors()}</ul>
-			<div>
-				<label>
-					Data:{" "}
-					<input
-						name='date'
-						onChange={handleFieldChange}
-						value={formState.date}
-						placeholder='RRRR-MM-DD'
-					/>
-				</label>
-			</div>
-			<div>
-				<label>
-					Godzina:{" "}
-					<input
-						name='time'
-						onChange={handleFieldChange}
-						value={formState.time}
-						placeholder='HH:MM'
-					/>
-				</label>
-			</div>
-
-			<div>
-				<label>
-					Imię:{" "}
-					<input
-						name='firstName'
-						onChange={handleFieldChange}
-						value={formState.firstName}
-					/>
-				</label>
-			</div>
-			<div>
-				<label>
-					Nazwisko:{" "}
-					<input
-						name='lastName'
-						onChange={handleFieldChange}
-						value={formState.lastName}
-					/>
-				</label>
-			</div>
-			<div>
-				<label>
-					Email:{" "}
-					<input
-						name='email'
-						onChange={handleFieldChange}
-						value={formState.email}
-						placeholder='nazwa@poczty.pl'
-					/>
-				</label>
-			</div>
-			<div>
-				<input type='submit' value='zapisz' />
-			</div>
+			{fields}
+			<Button type='click'>Zapisz</Button>
 		</form>
 	);
 };

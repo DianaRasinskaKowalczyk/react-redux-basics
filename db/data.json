@@ -17,11 +17,12 @@
       "id": 2
     },
     {
-      "firstName": "Diana",
-      "lastName": "Rasińska-Kowalczyk",
-      "email": "diana.rasinska@gmail.com",
+      "firstName": "Michał",
+      "lastName": "Kowalczyk",
+      "email": "kowalczyk_michal@interia.eu",
       "date": "2023-03-09",
       "time": "12:00",
+      "errors": [],
       "id": 3
     },
     {
@@ -30,6 +31,7 @@
       "email": "diana.rasinska@gmail.com",
       "date": "2023-03-09",
       "time": "12:00",
+      "errors": [],
       "id": 4
     },
     {
@@ -38,31 +40,8 @@
       "email": "diana.rasinska@gmail.com",
       "date": "2023-03-09",
       "time": "12:00",
+      "errors": [],
       "id": 5
-    },
-    {
-      "firstName": "iza",
-      "lastName": "Rasińska-Kowalczyk",
-      "email": "diana.rasinska@gmail.com",
-      "date": "2023-03-09",
-      "time": "12:00",
-      "id": 6
-    },
-    {
-      "firstName": "Michał",
-      "lastName": "Kowalczyk",
-      "email": "kowalczyk_michal@interia.eu",
-      "date": "2023-03-09",
-      "time": "12:00",
-      "id": 7
-    },
-    {
-      "firstName": "Michał",
-      "lastName": "Kowalczyk",
-      "email": "kowalczyk_michal@interia.eu",
-      "date": "2023-03-09",
-      "time": "12:00",
-      "id": 8
     },
     {
       "firstName": "Diana",
@@ -70,15 +49,26 @@
       "email": "diana.rasinska@gmail.com",
       "date": "2023-03-09",
       "time": "12:00",
-      "id": 9
+      "errors": [],
+      "id": 6
     },
     {
-      "firstName": "Michał",
-      "lastName": "Kowalczyk",
-      "email": "kowalczyk_michal@interia.eu",
+      "firstName": "Diana",
+      "lastName": "Rasińska-Kowalczyk",
+      "email": "diana.rasinska@gmail.com",
       "date": "2023-03-09",
       "time": "12:00",
-      "id": 10
+      "errors": [
+        {
+          "name": "date",
+          "message": "Podaj poprawną datę"
+        },
+        {
+          "name": "time",
+          "message": "Podaj poprawną godzinę"
+        }
+      ],
+      "id": 7
     }
   ]
 }

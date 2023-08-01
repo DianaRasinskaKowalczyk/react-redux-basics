@@ -1,11 +1,18 @@
 import React from 'react';
-
-import Calendar from './components/Calendar';
+import ResetStyle from "./components/styles/Reset";
+import GlobalStyle from "./components/styles/Global";
+import Calendar from "./components/calendar/Calendar";
 
 class App extends React.Component {
-    render() {
-        return <Calendar />
-    }
+	render() {
+		return (
+			<>
+				<ResetStyle />
+				<GlobalStyle />
+				<Calendar />
+			</>
+		);
+	}
 }
 
 export default App;
