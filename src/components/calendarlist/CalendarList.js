@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { handleFetch } from "../providers/CalendarProvider";
-import { loadMeetingsAction } from "../actions/calendar";
+import { handleFetch } from "../../providers/CalendarProvider";
+import { loadMeetingsAction } from "../../actions/calendar";
 import { useDispatch, useSelector } from "react-redux";
+import StyledCalendarList from "./CalendarList.styled";
+import CalendarItem from "../calendarItem/CalendarItem";
 
 const CalendarList = () => {
 	const dispatch = useDispatch();
@@ -27,16 +29,21 @@ const CalendarList = () => {
 
 	const renderMeetingsItem = itemData => {
 		return (
-			<li key={itemData.id}>
-				{itemData.date} {itemData.time} =
-				<a href={`mailto: ${itemData.email}`}>
-					{itemData.firstName} {itemData.lastName}
-				</a>
-			</li>
+			// <li key={itemData.id}>
+			// 	{itemData.date} {itemData.time} =
+			// 	<a href={`mailto: ${itemData.email}`}>
+			// 		{itemData.firstName} {itemData.lastName}
+			// 	</a>
+			// </li>
+			<CalendarItem itemData={itemData} />
 		);
 	};
 
-	return <ul>{renderMeetingsList()}</ul>;
+	return (
+		<StyledCalendarList>
+			<ul>{renderMeetingsList()}</ul>;
+		</StyledCalendarList>
+	);
 };
 
 export default CalendarList;

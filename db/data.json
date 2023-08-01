@@ -69,6 +69,36 @@
         }
       ],
       "id": 7
+    },
+    {
+      "firstName": "Diana",
+      "lastName": "Rasińska-Kowalczyk",
+      "email": "diana.rasinska@gmail.com",
+      "date": "2023-03-09",
+      "time": "12:00",
+      "errors": [
+        {
+          "name": "date",
+          "message": "Podaj poprawną datę"
+        },
+        {
+          "name": "time",
+          "message": "Podaj poprawną godzinę"
+        },
+        {
+          "name": "firstName",
+          "message": "Podaj imię"
+        },
+        {
+          "name": "lastName",
+          "message": "Podaj nazwisko"
+        },
+        {
+          "name": "email",
+          "message": "Podaj poprawny email"
+        }
+      ],
+      "id": 8
     }
   ]
 }
