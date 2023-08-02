@@ -1,6 +1,6 @@
 import React from "react";
 import CalendarList from "../calendarList/CalendarList";
-import CalendarForm from "../../CalendarForm/CalendarForm";
+import CalendarForm from "../CalendarForm/CalendarForm";
 import StyledCalendar from "./Calendar.styled";
 import Header from "../Header/Header";
 
