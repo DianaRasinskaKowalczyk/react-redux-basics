@@ -6,7 +6,8 @@ const CalendarItem = props => {
 	const { itemData, removeMeeting } = props;
 
 	const handleClick = meetingId => {
-		removeMeeting(meetingId);
+		console.log("remove");
+		return removeMeeting(meetingId);
 	};
 
 	return (

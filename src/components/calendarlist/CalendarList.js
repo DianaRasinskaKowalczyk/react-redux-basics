@@ -41,7 +41,10 @@ const CalendarList = () => {
 
 	const renderMeetingsItem = itemData => {
 		return (
-			<CalendarItem itemData={itemData} removeMeeting={handleRemoveMeeting} />
+			<CalendarItem
+				itemData={itemData}
+				removeMeeting={() => handleRemoveMeeting(itemData.id)}
+			/>
 		);
 	};
 
