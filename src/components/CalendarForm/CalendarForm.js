@@ -4,11 +4,11 @@ import { validateForm } from "../helpers/formValidation";
 import { saveMeetingAction } from "../actions/calendar";
 import { useDispatch } from "react-redux";
 import { postFetch } from "../providers/CalendarProvider";
-import Label from "./label/Label";
-import TextInput from "./textinput/TextInput";
-import FieldContainer from "./fieldContainer/FieldContainer";
-import Button from "./Button/Button";
-import Error from "./Error/Error";
+import Label from "../components/Label/Label";
+import TextInput from "../components/textinput/TextInput";
+import FieldContainer from "../components/FieldContainer/FieldContainer";
+import Button from "../components/Button/Button";
+import Error from "../components/Error/Error";
 
 const CalendarForm = () => {
 	const initialState = {
