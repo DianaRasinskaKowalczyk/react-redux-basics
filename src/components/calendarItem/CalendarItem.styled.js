@@ -9,6 +9,7 @@ const StyledCalendarItem = styled.li`
 	justify-content: space-between;
 	margin-bottom: 20px;
 	list-style: none;
+	align-items: center;
 
 	p {
 		color: #c8d0e7;

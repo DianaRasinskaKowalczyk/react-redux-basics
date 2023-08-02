@@ -91,7 +91,7 @@ const CalendarForm = () => {
 	return (
 		<form action='' onSubmit={handleSubmit}>
 			{fields}
-			<Button type='click'>Zapisz</Button>
+			<Button type='submit'>Zapisz</Button>
 		</form>
 	);
 };

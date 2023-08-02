@@ -20,9 +20,9 @@ export function postFetch(meeting) {
 	return handleFetch(options);
 }
 
-export function removeFetch(meeting) {
+export function removeFetch(meetingId) {
 	const options = {
 		method: "DELETE",
 	};
-	return handleFetch(options, `/${meeting}`);
+	return handleFetch(options, `/${meetingId}`);
 }

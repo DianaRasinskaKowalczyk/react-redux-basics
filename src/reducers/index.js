@@ -15,6 +15,14 @@ export const reducers = (state = initialState, action) => {
 			return {
 				meetings: [...state.meetings, meeting],
 			};
+		case "deleteMeetingAction":
+			const { meetingId } = action.payload;
+			return {
+				meetings: state.meetings.filter(meeting => {
+					meeting.id !== meetingId;
+				}),
+			};
+
 		default:
 			return state;
 	}

@@ -4,6 +4,8 @@ import { loadMeetingsAction } from "../../actions/calendar";
 import { useDispatch, useSelector } from "react-redux";
 import StyledCalendarList from "./CalendarList.styled";
 import CalendarItem from "../calendarItem/CalendarItem";
+import { removeFetch } from "../../providers/CalendarProvider";
+import { deleteMeetingAction } from "../../actions/calendar";
 
 const CalendarList = () => {
 	const dispatch = useDispatch();
@@ -27,15 +29,19 @@ const CalendarList = () => {
 		return meetings.map(item => renderMeetingsItem(item));
 	};
 
+	const handleRemoveMeeting = meetingId => {
+		removeFetch(meetingId)
+			.then(() => {
+				dispatch(deleteMeetingAction(meetingId));
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
 	const renderMeetingsItem = itemData => {
 		return (
-			// <li key={itemData.id}>
-			// 	{itemData.date} {itemData.time} =
-			// 	<a href={`mailto: ${itemData.email}`}>
-			// 		{itemData.firstName} {itemData.lastName}
-			// 	</a>
-			// </li>
-			<CalendarItem itemData={itemData} />
+			<CalendarItem itemData={itemData} removeMeeting={handleRemoveMeeting} />
 		);
 	};
 

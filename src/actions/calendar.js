@@ -15,3 +15,12 @@ export const saveMeetingAction = newMeeting => {
 		},
 	};
 };
+
+export const deleteMeetingAction = meetingId => {
+	return {
+		type: "deleteMeetingAction",
+		payload: {
+			meeting: meetingId,
+		},
+	};
+};
