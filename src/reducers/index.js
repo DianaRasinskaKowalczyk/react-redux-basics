@@ -19,7 +19,7 @@ export const reducers = (state = initialState, action) => {
 			const { meetingId } = action.payload;
 			return {
 				meetings: state.meetings.filter(meeting => {
-					meeting.id !== meetingId;
+					return meeting.id !== meetingId;
 				}),
 			};
 

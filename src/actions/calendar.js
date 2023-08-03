@@ -20,7 +20,7 @@ export const deleteMeetingAction = meetingId => {
 	return {
 		type: "deleteMeetingAction",
 		payload: {
-			meeting: meetingId,
+			meetingId: meetingId,
 		},
 	};
 };

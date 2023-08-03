@@ -1,13 +1,22 @@
 {
   "meetings": [
     {
-      "firstName": "Michał",
-      "lastName": "Kowalczyk",
-      "email": "kowalczyk_michal@interia.eu",
+      "firstName": "Diana",
+      "lastName": "Rasińska-Kowalczyk",
+      "email": "diana.rasinska@gmail.com",
       "date": "2023-03-09",
       "time": "12:00",
       "errors": [],
-      "id": 3
+      "id": 1
+    },
+    {
+      "firstName": "Jan",
+      "lastName": "Kowalski",
+      "email": "diana.rasinska@gmail.com",
+      "date": "2023-03-09",
+      "time": "12:00",
+      "errors": [],
+      "id": 2
     }
   ]
 }
